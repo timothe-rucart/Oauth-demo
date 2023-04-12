@@ -20,5 +20,4 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    // other controller methods
 }
