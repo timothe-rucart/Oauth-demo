@@ -1,0 +1,1 @@
+return a list of articles from a GET endpoint. The endpoints should allow only requests that are authenticated against our OAuth server.

@@ -7,6 +7,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
@@ -30,6 +31,7 @@ import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
 @Configuration(proxyBeanMethods = false)
+@Import(OAuth2AuthorizationServerConfiguration.class)
 public class AuthorizationServerConfig {
 
     @Autowired
@@ -39,7 +41,6 @@ public class AuthorizationServerConfig {
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
-
         return http.formLogin(Customizer.withDefaults()).build();
     }
 
@@ -62,6 +63,7 @@ public class AuthorizationServerConfig {
 
         return new InMemoryRegisteredClientRepository(registeredClient);
     }
+
 
     @Bean
     public JWKSource<SecurityContext> jwkSource() {

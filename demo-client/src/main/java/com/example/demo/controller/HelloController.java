@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class DemoController {
+public class HelloController {
 
-    @GetMapping("api/demo")
-    public String demo(@RequestParam(required = false) String name){
-        return name == null ?  "hello world" : "hellooo " + name;
+    @GetMapping("api/hello")
+    public String hello(){
+        return "hello world!";
     }
 
 

@@ -17,5 +17,6 @@
     <modules>
         <module>demo-client</module>
         <module>Oauth-server</module>
+        <module>resource-server</module>
     </modules>
 </project>
