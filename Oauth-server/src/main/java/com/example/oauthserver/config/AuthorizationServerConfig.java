@@ -97,7 +97,7 @@ public class AuthorizationServerConfig {
     @Bean
     public AuthorizationServerSettings providerSettings() {
         return AuthorizationServerSettings.builder()
-                .issuer("http://auth-server:9000")
+                .issuer("http://127.0.0.1:9000")
                 .build();
     }
 }

@@ -8,9 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity
-public class WebSecurityConfig {
+import static org.springframework.security.config.Customizer.withDefaults;
 
+@EnableWebSecurity
+public class SecurityConfig {
     private static final String[] WHITE_LIST_URLS = {
             "/hello",
             "/register",
@@ -26,17 +27,17 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors()
-            .and()
-            .csrf()
-            .disable()
-            .authorizeHttpRequests()
-            .requestMatchers(WHITE_LIST_URLS).permitAll()
-            .requestMatchers("/api/**").authenticated()
-            .and()
-            .oauth2Login(oauth2login ->
-                    oauth2login.loginPage("/oauth2/authorization/api-client-oidc"))
-            .oauth2Client(Customizer.withDefaults());
+                .cors()
+                .and()
+                .csrf()
+                .disable()
+                .authorizeHttpRequests()
+                .requestMatchers(WHITE_LIST_URLS).permitAll()
+                .requestMatchers("/api/**").authenticated()
+                .and()
+                .oauth2Login(oauth2login ->
+                        oauth2login.loginPage("/oauth2/authorization/api-client-oidc"))
+                .oauth2Client(Customizer.withDefaults());
 
         return http.build();
     }
